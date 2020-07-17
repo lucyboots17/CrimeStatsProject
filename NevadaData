@@ -1,0 +1,70 @@
+library(data.table)
+
+crime_stats <- fread(file = '~/Desktop/Data Projects/Crime Stats Project/CrimeDataSet.csv')
+
+##Select Data for Nevada
+NVStats<- crime_stats[Area == 'NV']
+
+##Display the Data for Nevada
+NVStats
+summary(NVStats)
+
+##Perform Data Analysis for Nevada
+##LinearModels
+##Assault
+linearMod <- lm(TaxRevenuePerCapita~Assault, data = NVStats)
+summary(linearMod)
+##Burglary
+linearMod <- lm(TaxRevenuePerCapita~Burglary, data = NVStats)
+summary(linearMod)
+##Larceny
+linearMod <- lm(TaxRevenuePerCapita~Larceny, data = NVStats)
+summary(linearMod)
+##MurderHomocide
+linearMod <- lm(TaxRevenuePerCapita~MurderHomocide, data = NVStats)
+summary(linearMod)
+##MotorVehicleTheft
+linearMod <- lm(TaxRevenuePerCapita~MotorVehicleTheft, data = NVStats)
+summary(linearMod)
+##PropertyCrime
+linearMod <- lm(TaxRevenuePerCapita~PropertyCrime, data = NVStats)
+summary(linearMod)
+##Robery
+linearMod <- lm(TaxRevenuePerCapita~Robbery, data = NVStats)
+summary(linearMod)
+##Rape
+linearMod <- lm(TaxRevenuePerCapita~Rape, data = NVStats)
+summary(linearMod)
+##ViolentCrime
+linearMod <- lm(TaxRevenuePerCapita~ViolentCrime, data = NVStats)
+summary(linearMod)
+
+
+##Plot Results
+##Assault
+plot(NVStats[, .(Assault, TaxRevenuePerCapita)], main = 'NVCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Assault']]), col = 'red')
+##Burglary
+plot(NVStats[, .(Burglary, TaxRevenuePerCapita)], main = 'NVCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Burglary']]), col = 'blue')
+##Larceny
+plot(NVStats[, .(Larceny, TaxRevenuePerCapita)], main = 'NVCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Larceny']]), col = 'green')
+##MurderHomocide
+plot(NVStats[, .(MurderHomocide, TaxRevenuePerCapita)], main = 'NVCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['MurderHomocide']]), col = 'purple')
+##MotorVehicleTheft
+plot(NVStats[, .(MotorVehicleTheft, TaxRevenuePerCapita)], main = 'NVCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['MotorVehicleTheft']]), col = 'red')
+##PropertyCrime
+plot(NVStats[, .(PropertyCrime, TaxRevenuePerCapita)], main = 'NVCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['PropertyCrime']]), col = 'red')
+##Robbery
+plot(NVStats[, .(Robbery, TaxRevenuePerCapita)], main = 'NVCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Robbery']]), col = 'red')
+##Rape
+plot(NVStats[, .(Rape, TaxRevenuePerCapita)], main = 'NVCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Rape']]), col = 'red')
+##ViolentCrime
+plot(NVStats[, .(ViolentCrime, TaxRevenuePerCapita)], main = 'NVCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['ViolentCrime']]), col = 'red')
