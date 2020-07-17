@@ -1,0 +1,69 @@
+library(data.table)
+
+crime_stats <- fread(file = '~/Desktop/Data Projects/Crime Stats Project/CrimeDataSet.csv')
+
+##Select Data for the US
+USStats<- crime_stats[Area == 'US']
+
+##Display the Data for the US
+USStats
+summary(USStats)
+
+##Perform Data Analysis for the US
+##LinearModels
+##Assault
+linearMod <- lm(TaxRevenuePerCapita~Assault, data = USStats)
+summary(linearMod)
+##Burglary
+linearMod <- lm(TaxRevenuePerCapita~Burglary, data = USStats)
+summary(linearMod)
+##Larceny
+linearMod <- lm(TaxRevenuePerCapita~Larceny, data = USStats)
+summary(linearMod)
+##MurderHomocide
+linearMod <- lm(TaxRevenuePerCapita~MurderHomocide, data = USStats)
+summary(linearMod)
+##MotorVehicleTheft
+linearMod <- lm(TaxRevenuePerCapita~MotorVehicleTheft, data = USStats)
+summary(linearMod)
+##PropertyCrime
+linearMod <- lm(TaxRevenuePerCapita~PropertyCrime, data = USStats)
+summary(linearMod)
+##Robery
+linearMod <- lm(TaxRevenuePerCapita~Robbery, data = USStats)
+summary(linearMod)
+##Rape
+linearMod <- lm(TaxRevenuePerCapita~Rape, data = USStats)
+summary(linearMod)
+##ViolentCrime
+linearMod <- lm(TaxRevenuePerCapita~ViolentCrime, data = USStats)
+summary(linearMod)
+
+##Plot Results
+##Assault
+plot(USStats[, .(Assault, TaxRevenuePerCapita)], main = 'USCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Assault']]), col = 'red')
+##Burglary
+plot(USStats[, .(Burglary, TaxRevenuePerCapita)], main = 'USCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Burglary']]), col = 'blue')
+##Larceny
+plot(USStats[, .(Larceny, TaxRevenuePerCapita)], main = 'USCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Larceny']]), col = 'green')
+##MurderHomocide
+plot(USStats[, .(MurderHomocide, TaxRevenuePerCapita)], main = 'USCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['MurderHomocide']]), col = 'purple')
+##MotorVehicleTheft
+plot(USStats[, .(MotorVehicleTheft, TaxRevenuePerCapita)], main = 'USCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['MotorVehicleTheft']]), col = 'red')
+##PropertyCrime
+plot(USStats[, .(PropertyCrime, TaxRevenuePerCapita)], main = 'USCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['PropertyCrime']]), col = 'red')
+##Robbery
+plot(USStats[, .(Robbery, TaxRevenuePerCapita)], main = 'USCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Robbery']]), col = 'red')
+##Rape
+plot(USStats[, .(Rape, TaxRevenuePerCapita)], main = 'USCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Rape']]), col = 'red')
+##ViolentCrime
+plot(USStats[, .(ViolentCrime, TaxRevenuePerCapita)], main = 'USCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['ViolentCrime']]), col = 'red')
