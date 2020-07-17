@@ -1,0 +1,20 @@
+##Start Python
+python3
+
+##Import the Data Using Pandas
+import pandas as pd
+df = pd.read_csv('PythonData.csv')
+
+## Glimpse of the Data
+df.head()
+
+##Group the Data by Area
+df[df.Area == 'US']
+
+##Make a Bar Chart
+fig = px.bar(df[df.Area == 'US'],
+x='Type of Crime', y='P-value',
+hover_data=['P-value'], color='P-value')
+
+##Display the Bar Chart
+fig.show
