@@ -1,0 +1,70 @@
+library(data.table)
+
+crime_stats <- fread(file = '~/Desktop/Data Projects/Crime Stats Project/CrimeDataSet.csv')
+
+##Select Data for Reno
+RenoStats<- crime_stats[Area == 'Reno']
+
+##Display the Data for Reno
+RenoStats
+summary(RenoStats)
+
+
+##Perform Data Analysis for Reno
+##Linear Models
+##Assault
+linearMod <- lm(TaxRevenuePerCapita~Assault, data = RenoStats)
+summary(linearMod)
+##Burglary
+linearMod <- lm(TaxRevenuePerCapita~Burglary, data = RenoStats)
+summary(linearMod)
+##Larceny
+linearMod <- lm(TaxRevenuePerCapita~Larceny, data = RenoStats)
+summary(linearMod)
+##MurderHomocide
+linearMod <- lm(TaxRevenuePerCapita~MurderHomocide, data = RenoStats)
+summary(linearMod)
+##MotorVehicleTheft
+linearMod <- lm(TaxRevenuePerCapita~MotorVehicleTheft, data = RenoStats)
+summary(linearMod)
+##PropertyCrime
+linearMod <- lm(TaxRevenuePerCapita~PropertyCrime, data = RenoStats)
+summary(linearMod)
+##Robery
+linearMod <- lm(TaxRevenuePerCapita~Robbery, data = RenoStats)
+summary(linearMod)
+##Rape
+linearMod <- lm(TaxRevenuePerCapita~Rape, data = RenoStats)
+summary(linearMod)
+##ViolentCrime
+linearMod <- lm(TaxRevenuePerCapita~ViolentCrime, data = RenoStats)
+summary(linearMod)
+
+##Plot Results
+##Assault
+plot(RenoStats[, .(Assault, TaxRevenuePerCapita)], main = 'RenoCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Assault']]), col = 'red')
+##Burglary
+plot(RenoStats[, .(Burglary, TaxRevenuePerCapita)], main = 'RenoCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Burglary']]), col = 'blue')
+##Larceny
+plot(RenoStats[, .(Larceny, TaxRevenuePerCapita)], main = 'RenoCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Larceny']]), col = 'green')
+##MurderHomocide
+plot(RenoStats[, .(MurderHomocide, TaxRevenuePerCapita)], main = 'RenoCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['MurderHomocide']]), col = 'purple')
+##MotorVehicleTheft
+plot(RenoStats[, .(MotorVehicleTheft, TaxRevenuePerCapita)], main = 'RenoCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['MotorVehicleTheft']]), col = 'red')
+##PropertyCrime
+plot(RenoStats[, .(PropertyCrime, TaxRevenuePerCapita)], main = 'RenoCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['PropertyCrime']]), col = 'red')
+##Robbery
+plot(RenoStats[, .(Robbery, TaxRevenuePerCapita)], main = 'RenoCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Robbery']]), col = 'red')
+##Rape
+plot(RenoStats[, .(Rape, TaxRevenuePerCapita)], main = 'RenoCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['Rape']]), col = 'red')
+##ViolentCrime
+plot(RenoStats[, .(ViolentCrime, TaxRevenuePerCapita)], main = 'RenoCrime')
+abline(coef = c(linearMod$coefficients[['(Intercept)']], linearMod$coefficients[['ViolentCrime']]), col = 'red')
