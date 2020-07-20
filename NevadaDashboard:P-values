@@ -1,6 +1,10 @@
 ##Start Python
 python3
 
+##Make sure you're in the proper current working directory
+import os
+os.listdir()
+
 ##Import the Data Using Pandas
 import pandas as pd
 df = pd.read_csv('PythonData.csv')
@@ -9,7 +13,11 @@ df = pd.read_csv('PythonData.csv')
 df.head()
 
 ##Group the Data by Area
-df[df.Area == 'NV']
+df[df.Area == 'NV' AND
+df.Symbol != '0']
+
+##Import Plotly Express
+import plotly.express as px
 
 ##Make a Bar Chart
 fig = px.bar(df[df.Area == 'NV'],
